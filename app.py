@@ -4,7 +4,10 @@ import pandas as pd
 import pyarrow as arrow
 import streamlit as st
 
-st.set_page_config(page_title="Arishem simulator", page_icon=":earth_africa:")
+icon_arishem = ":earth_africa:"
+icon_deck    = ":heavy_check_mark:"
+
+st.set_page_config(page_title="Arishem simulator", page_icon=icon_arishem)
 
 arishem = [
     "Arishem",
@@ -53,7 +56,7 @@ arishem_deck = cards.loc[arishem_index,:]
 col_deck_1, col_deck_2 = st.columns(2)
 
 with col_deck_1:
-    st.markdown("### Starting deck")
+    st.markdown("### Starting deck :heavy_check_mark:")
     starting_deck = []
     for sd in deck_index:
         sd_name = cards.iloc[sd]["name"]
@@ -62,7 +65,7 @@ with col_deck_1:
     st.markdown(separator.join(starting_deck))
 
 with col_deck_2:
-    st.markdown("### Arishem cards")
+    st.markdown("### Arishem cards :earth_africa:")
     new_cards = []
     for nc in new_cards_index:
         nc_name = cards.iloc[nc]["name"]
@@ -82,7 +85,8 @@ opening_cards = []
 for op in range(0, 3):
     op_name = arishem_deck.iloc[op]["name"]
     op_url  = arishem_deck.iloc[op]["url"]
-    opening_cards.append(f"[{op_name}]({op_url})")
+    icon = icon_deck if op_name in deck_names else icon_arishem
+    opening_cards.append(f"[{op_name}]({op_url}){icon}")
 opening_cards = separator.join(opening_cards)
 st.markdown(f"**Opening hand**: {opening_cards}")
 
@@ -90,8 +94,9 @@ st.markdown(f"**Opening hand**: {opening_cards}")
 for draw in range(3, 10):
     turn = draw - 2
     draw_name = arishem_deck.iloc[draw]["name"]
+    icon = icon_deck if draw_name in deck_names else icon_arishem
     draw_url  = arishem_deck.iloc[draw]["url"]
-    draw_card = f"[{draw_name}]({draw_url})"
+    draw_card = f"[{draw_name}]({draw_url}){icon}"
     if turn == 7:
         st.markdown(f"**Turn {turn} (if any)**: {draw_card}")
     else:
@@ -101,7 +106,8 @@ for draw in range(3, 10):
 not_drawn_cards = []
 for not_drawn in range(10, len(arishem_deck.index)):
     nd_name = arishem_deck.iloc[not_drawn]["name"]
+    icon = icon_deck if nd_name in deck_names else icon_arishem
     nd_url = arishem_deck.iloc[not_drawn]["url"]
-    not_drawn_cards.append(f"[{nd_name}]({nd_url})")
+    not_drawn_cards.append(f"[{nd_name}]({nd_url}){icon}")
 not_drawn_cards = separator.join(not_drawn_cards)
 st.markdown(f"**Not drawn**: {not_drawn_cards}")
