@@ -1,0 +1,16 @@
+# (1) Howard the Duck
+# (1) Quinjet
+# (2) Okoye
+# (2) Psylocke
+# (3) Mystique
+# (3) Rogue
+# (3) Phastos
+# (4) Jubilee
+# (5) Sersi
+# (5) Mockingbird
+# (6) Blob
+# (7) Arishem
+#
+eyJOYW1lIjoiTmV3IERlY2siLCJDYXJkcyI6W3siQ2FyZERlZklkIjoiSG93YXJkVGhlRHVjayJ9LHsiQ2FyZERlZklkIjoiUXVpbmpldCJ9LHsiQ2FyZERlZklkIjoiT2tveWUifSx7IkNhcmREZWZJZCI6IlBzeWxvY2tlIn0seyJDYXJkRGVmSWQiOiJNeXN0aXF1ZSJ9LHsiQ2FyZERlZklkIjoiUm9ndWUifSx7IkNhcmREZWZJZCI6IlBoYXN0b3MifSx7IkNhcmREZWZJZCI6Ikp1YmlsZWUifSx7IkNhcmREZWZJZCI6IlNlcnNpIn0seyJDYXJkRGVmSWQiOiJNb2NraW5nYmlyZCJ9LHsiQ2FyZERlZklkIjoiQmxvYiJ9LHsiQ2FyZERlZklkIjoiQXJpc2hlbSJ9XX0=
+#
+# To use this deck, copy it to your clipboard and paste it from the deck editing menu in Snap.
