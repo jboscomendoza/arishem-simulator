@@ -4,6 +4,15 @@ import pandas as pd
 import pyarrow as arrow
 import streamlit as st
 
+
+def create_link(index_value:int, dataframe:pd.DataFrame):
+    "Builds a markdown link to snap.fam using the card data in a given dataframe."
+    link_name = dataframe.iloc[index_value]["name"]
+    link_url  = dataframe.iloc[index_value]["url"]
+    link_text = f"[{link_name}]({link_url})"
+    return link_text 
+
+
 icon_arishem = ":earth_africa:"
 icon_deck    = ":heavy_check_mark:"
 
@@ -59,18 +68,16 @@ with col_deck_1:
     st.markdown("### Starting deck :heavy_check_mark:")
     starting_deck = []
     for sd in deck_index:
-        sd_name = cards.iloc[sd]["name"]
-        sd_url  = cards.iloc[sd]["url"]
-        starting_deck.append(f"[{sd_name}]({sd_url})")
+        sd_link = create_link(sd, cards)
+        starting_deck.append(sd_link)
     st.markdown(separator.join(starting_deck))
 
 with col_deck_2:
     st.markdown("### Arishem cards :earth_africa:")
     new_cards = []
     for nc in new_cards_index:
-        nc_name = cards.iloc[nc]["name"]
-        nc_url  = cards.iloc[nc]["url"]
-        new_cards.append(f"[{nc_name}]({nc_url})")
+        nc_link = create_link(nc, cards)
+        new_cards.append(nc_link)
     st.markdown(separator.join(new_cards))
 
 
@@ -83,20 +90,20 @@ st.markdown("### Card draws")
 
 opening_cards = []
 for op in range(0, 3):
+    op_link = create_link(op, arishem_deck)
     op_name = arishem_deck.iloc[op]["name"]
-    op_url  = arishem_deck.iloc[op]["url"]
     icon = icon_deck if op_name in deck_names else icon_arishem
-    opening_cards.append(f"[{op_name}]({op_url}){icon}")
+    opening_cards.append(op_link + f"{icon}")
 opening_cards = separator.join(opening_cards)
 st.markdown(f"**Opening hand**: {opening_cards}")
 
 
 for draw in range(3, 10):
     turn = draw - 2
+    op_link = create_link(draw, arishem_deck)
     draw_name = arishem_deck.iloc[draw]["name"]
     icon = icon_deck if draw_name in deck_names else icon_arishem
-    draw_url  = arishem_deck.iloc[draw]["url"]
-    draw_card = f"[{draw_name}]({draw_url}){icon}"
+    draw_card = op_link + f"{icon}"
     if turn == 7:
         st.markdown(f"**Turn {turn} (if any)**: {draw_card}")
     else:
@@ -106,8 +113,8 @@ for draw in range(3, 10):
 not_drawn_cards = []
 for not_drawn in range(10, len(arishem_deck.index)):
     nd_name = arishem_deck.iloc[not_drawn]["name"]
+    nd_link = create_link(not_drawn, arishem_deck)
     icon = icon_deck if nd_name in deck_names else icon_arishem
-    nd_url = arishem_deck.iloc[not_drawn]["url"]
-    not_drawn_cards.append(f"[{nd_name}]({nd_url}){icon}")
+    not_drawn_cards.append(nd_link + f"{icon}")
 not_drawn_cards = separator.join(not_drawn_cards)
 st.markdown(f"**Not drawn**: {not_drawn_cards}")
