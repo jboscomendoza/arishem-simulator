@@ -18,17 +18,9 @@ icon_deck    = ":heavy_check_mark:"
 
 st.set_page_config(page_title="Arishem simulator", page_icon=icon_arishem)
 
-arishem = [
-    "Arishem",
-    "At the start of the game, +1 Max Energy. Shuffle 12 random cards into your deck.",
-    "https://snap.fan/cards/Arishem/"
-]
-
 separator = " / "
 
 cards = pd.read_parquet("cards.parquet")
-cards.loc[max(cards.index)+1] = arishem
-
 
 ### Markdown
 hcol_1, hcol_2, hcol_3 = st.columns([0.5, 2, 0.5])
