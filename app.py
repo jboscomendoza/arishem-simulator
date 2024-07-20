@@ -5,6 +5,8 @@ import pyarrow as arrow
 import streamlit as st
 
 
+CARDS_PATH = "marvel-snap-cards/marvel-snap-cards.json"
+
 def create_link(index_value:int, dataframe:pd.DataFrame):
     "Builds a markdown link to snap.fam using the card data in a given dataframe."
     link_name = dataframe.iloc[index_value]["name"]
@@ -15,12 +17,11 @@ def create_link(index_value:int, dataframe:pd.DataFrame):
 
 icon_arishem = ":earth_africa:"
 icon_deck    = ":heavy_check_mark:"
-
 st.set_page_config(page_title="Arishem simulator", page_icon=icon_arishem)
 
 separator = " / "
 
-cards = pd.read_parquet("cards.parquet")
+cards = pd.read_json(CARDS_PATH)
 
 ### Markdown
 hcol_1, hcol_2, hcol_3 = st.columns([0.5, 2, 0.5])
