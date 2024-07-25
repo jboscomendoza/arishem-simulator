@@ -22,6 +22,7 @@ st.set_page_config(page_title="Arishem simulator", page_icon=icon_arishem)
 separator = " / "
 
 cards = pd.read_json(CARDS_PATH)
+cards = cards[cards["released"]]
 
 ### Markdown
 hcol_1, hcol_2, hcol_3 = st.columns([0.5, 2, 0.5])
